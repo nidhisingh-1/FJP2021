@@ -8,22 +8,31 @@ public class printPrimetillN {
 
         Scanner scn = new Scanner(System.in);
 
-        int n = scn.nextInt();
-        int div = 2;
+        int low = scn.nextInt();
+        int hi = scn.nextInt();
 
-        for (int i = 1 ; i <= n ; i++){
+        for(int i = low ; i <= hi ; i++){
 
-            while ( div * div <= i){
+            int div = 2 ;
 
-                if(i % div != 0){
+            boolean isPrime = true;
 
-                    System.out.println(i);
+            while (div * div <= i){
+
+                int rem = i % div ;
+
+                if (rem == 0){
+
+                    isPrime = false;
+                    break;
                 }
 
-                div ++;
+                div++;
+            }
+
+            if(isPrime){
+                System.out.println(i);
             }
         }
-    }
 
-
-}
+    }}
