@@ -8,41 +8,17 @@ public class Reverse {
 
         Scanner scn = new Scanner(System.in);
 
-        int num = scn.nextInt();
+        int n = scn.nextInt();
 
-        int temp = num;
+        int revNum = 0;
 
-        int div = 1;
-
-        while(temp >= 10){
-
-            temp = temp/10;
-
-            div = div * 10;
-
+        while (n != 0) {
+            int r = n % 10;
+            revNum = revNum * 10 + r;
+            n = n / 10;
         }
 
-        int rn = 0;
-
-        int pos = 0;
-
-        while (div >= 1){
-
-            int quo = num / div ;
-
-            pos ++;
-
-            int rem = num % div ;
-
-            rn = rn + quo * (int) Math.pow(10, pos -1);
-
-            num = rem;
-
-            div = div/10;
-
-        }
-
-        System.out.println(rn);
+        System.out.println(revNum);
 
     }
 }
