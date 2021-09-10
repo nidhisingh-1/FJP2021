@@ -1,0 +1,15 @@
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int x = scn.nextInt();
+
+    // write ur code here
+    for(int ja = 1; ja <= 10; ja++){
+        int val = x * ja;
+        System.out.println(x + " * " + ja + " = " + val);
+    }
+  }
+}
