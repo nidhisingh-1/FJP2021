@@ -2,7 +2,7 @@ package Lec13;
 
 import java.util.Scanner;
 
-public class Addition {
+public class AnyBaseAddition {
 
     public static void main(String[] args) {
 
