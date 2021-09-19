@@ -1,8 +1,8 @@
-package Lec9;
+package Lec16;
 
 import java.util.Scanner;
 
-public class Pattern18 {
+class InvertedHourGlass {
 
     public static void main(String[] args) {
 
@@ -20,7 +20,7 @@ public class Pattern18 {
 
             for (int j = 1; j <= nst; j++) {
 
-                if (i > n/2 && i < n) {
+                if (i > n/2  && i < n ) {
 
                     if (j == 1 || j == nst) {
                         System.out.print("*\t");

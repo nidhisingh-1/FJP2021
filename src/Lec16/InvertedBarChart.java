@@ -1,8 +1,8 @@
-package Lec15;
+package Lec16;
 
 import java.util.Scanner;
 
-public class BarChart {
+public class InvertedBarChart {
 
     public static void main(String[] args) {
 
@@ -22,7 +22,7 @@ public class BarChart {
             }
         }
 
-        for (int ht = 1; ht <= max; ht++) {
+        for (int ht = max; ht >= 1; ht--) {
 
             for (int i = 0; i < arr.length; i++) {
 
