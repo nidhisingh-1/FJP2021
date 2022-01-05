@@ -27,7 +27,7 @@ public class levelOrder {
         Node sixty = new Node(60);
         twenty.gt.add(fifty);
         twenty.gt.add(sixty);
-        Node seventy = new Node(70);
+        Node seventy = new Node(170);
         Node eighty = new Node(80);
         Node ninety = new Node(90);
         thirty.gt.add(seventy);
@@ -41,6 +41,9 @@ public class levelOrder {
         eighty.gt.add(oneTwenty);
 
         levelOrder(root);
+        System.out.println(size(root));
+        System.out.println(max(root));
+        System.out.println(height(root));
     }
 
     public static void levelOrder(Node root) { // remove print add rpa algo
@@ -50,16 +53,47 @@ public class levelOrder {
 
         while (qt.size() > 0) {
             Node temp = qt.remove();
-            System.out.println(temp.data + " ");
+            System.out.print(temp.data + " ");
 
-            for (Node child : temp.gt) {
-                qt.add(child);
-            }
+            qt.addAll(temp.gt);
 
         }
 
         System.out.println(".");
 
+    }
+
+    public static int size(Node root) {
+
+        int size = 0;
+
+        for (Node child : root.gt) {
+            size += size(child);
+        }
+
+        return size + 1;
+    }
+
+    public static int max(Node root) {
+        int maxChild = root.data;
+
+        for (Node child : root.gt) {
+            int recAns = max(child);
+            maxChild = Math.max(recAns, maxChild);
+        }
+
+        return maxChild;
+    }
+
+    public static int height(Node root){
+        int height = -1;
+
+        for(Node child : root.gt){
+              int recAns = height(child);
+              height = Math.max(recAns, height);
+        }
+
+        return height + 1;
     }
 }
 
