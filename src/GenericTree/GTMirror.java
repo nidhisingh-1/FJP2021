@@ -1,9 +1,11 @@
 package GenericTree;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Collections;
+import java.util.Queue;
 
-public class GTdemo {
+public class GTMirror {
 
     public static class Node {
         int data;
@@ -40,45 +42,31 @@ public class GTdemo {
         Node oneTwenty = new Node(120);
         eighty.gt.add(oneTen);
         eighty.gt.add(oneTwenty);
-
-        Scanner scn = new Scanner(System.in);
-        int item = scn.nextInt();
-        // System.out.println(find(root, item));
-        System.out.println(nodeToRootPath(root,item));
-
+        levelOrder(root);
+        mirror(root);
+        levelOrder(root);
     }
 
-    public static boolean find(Node node, int item){
+    public static void mirror(Node root){
 
-        boolean found ;
-        if(node.data == item){
-            return true;
+        for(Node child : root.gt){
+            mirror(child);
         }
-
-        for(Node child : node.gt){
-            found = find(child, item);
-            if(found){
-                return true;
-            }
-        }
-        return false;
+        Collections.reverse(root.gt);
     }
 
-    public static ArrayList<Integer> nodeToRootPath(Node node, int data){
+    public static void levelOrder(Node root){
 
-        if(node.data == data){
-            ArrayList<Integer> path = new ArrayList<>();
-            path.add(node.data);
-            return path;
+        Queue<Node> children = new ArrayDeque<>();
+        children.add(root);
+
+        while(children.size() > 0){
+            Node temp = children.remove();
+            System.out.print(temp.data + " ");
+            children.addAll(temp.gt);
         }
 
-        for(Node child : node.gt){
-            ArrayList<Integer> path = nodeToRootPath(child, data);
-            if(path.size() > 0){
-                path.add(node.data);
-                return path;
-            }
-        }
-        return new ArrayList<>();
+        System.out.println(".");
+
     }
 }

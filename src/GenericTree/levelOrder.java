@@ -54,9 +54,7 @@ public class levelOrder {
         while (qt.size() > 0) {
             Node temp = qt.remove();
             System.out.print(temp.data + " ");
-
             qt.addAll(temp.gt);
-
         }
 
         System.out.println(".");

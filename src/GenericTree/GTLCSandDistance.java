@@ -3,16 +3,14 @@ package GenericTree;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GTdemo {
+public class GTLCSandDistance {
 
     public static class Node {
         int data;
-        ArrayList<Node> gt = new ArrayList<Node>();
-
+        ArrayList<Node> gt = new ArrayList<>();
         Node(int data) {
             this.data = data;
         }
-
     }
 
     public static void main(String[] args) {
@@ -43,42 +41,18 @@ public class GTdemo {
 
         Scanner scn = new Scanner(System.in);
         int item = scn.nextInt();
-        // System.out.println(find(root, item));
-        System.out.println(nodeToRootPath(root,item));
 
     }
 
-    public static boolean find(Node node, int item){
-
-        boolean found ;
-        if(node.data == item){
-            return true;
-        }
-
-        for(Node child : node.gt){
-            found = find(child, item);
-            if(found){
-                return true;
-            }
-        }
-        return false;
+    public static int lca(Node one , Node two){
+        int lca = 0;
+        return lca;
     }
 
-    public static ArrayList<Integer> nodeToRootPath(Node node, int data){
 
-        if(node.data == data){
-            ArrayList<Integer> path = new ArrayList<>();
-            path.add(node.data);
-            return path;
-        }
-
-        for(Node child : node.gt){
-            ArrayList<Integer> path = nodeToRootPath(child, data);
-            if(path.size() > 0){
-                path.add(node.data);
-                return path;
-            }
-        }
-        return new ArrayList<>();
+    public static int distance(Node one , Node two){
+        int distance = 0;
+        return distance;
     }
+
 }

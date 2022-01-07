@@ -26,9 +26,7 @@ public class GTdemo2 {
             Node temp = qt.remove();
             System.out.println(temp.data + " ");
 
-            for (Node child : temp.gt) {
-                qt.add(child);
-            }
+            qt.addAll(temp.gt);
 
         }
 

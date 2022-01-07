@@ -1,9 +1,8 @@
 package GenericTree;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class GTdemo {
+public class GTtraversal {
 
     public static class Node {
         int data;
@@ -41,44 +40,20 @@ public class GTdemo {
         eighty.gt.add(oneTen);
         eighty.gt.add(oneTwenty);
 
-        Scanner scn = new Scanner(System.in);
-        int item = scn.nextInt();
-        // System.out.println(find(root, item));
-        System.out.println(nodeToRootPath(root,item));
+        traversal(root);
 
     }
 
-    public static boolean find(Node node, int item){
+    public static void traversal(Node root){
 
-        boolean found ;
-        if(node.data == item){
-            return true;
+        System.out.println("Node pre " + root.data);
+
+        for(Node child : root.gt){
+            System.out.println("Edge pre " + root.data + "--" + child.data);
+            traversal(child);
+            System.out.println("Edge Post " + root.data + "--" + child.data);
         }
 
-        for(Node child : node.gt){
-            found = find(child, item);
-            if(found){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static ArrayList<Integer> nodeToRootPath(Node node, int data){
-
-        if(node.data == data){
-            ArrayList<Integer> path = new ArrayList<>();
-            path.add(node.data);
-            return path;
-        }
-
-        for(Node child : node.gt){
-            ArrayList<Integer> path = nodeToRootPath(child, data);
-            if(path.size() > 0){
-                path.add(node.data);
-                return path;
-            }
-        }
-        return new ArrayList<>();
+        System.out.println("Node post " + root.data);
     }
 }
