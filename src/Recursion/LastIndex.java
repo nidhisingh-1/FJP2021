@@ -2,7 +2,7 @@ package Recursion;
 
 import java.util.Scanner;
 
-public class FirstIndex {
+public class LastIndex {
 
     public static void main(String[] args) {
 
@@ -13,21 +13,23 @@ public class FirstIndex {
             arr[i] = scn.nextInt();
         }
         int x = scn.nextInt();
-        System.out.println(firstIndex(arr, 0,x));
+        System.out.println(lastIndex(arr, 0,x));
     }
 
-    private static int firstIndex(int[] arr, int idx, int x) {
+    private static int lastIndex(int[] arr, int idx, int x) {
 
-        if(arr.length== idx){
+        if(idx == arr.length){
             return -1;
         }
 
-       if(arr[idx] == x){
-           return idx;
-       } else {
-           int fi = firstIndex(arr, idx+1, x);
-           return fi;
-       }
+        int liisa = lastIndex(arr, idx + 1, x);
+        if(liisa != -1){
+            return liisa;
+        } else if(arr[idx] == x){
+            return idx;
+        } else {
+            return -1;
+        }
 
     }
 }

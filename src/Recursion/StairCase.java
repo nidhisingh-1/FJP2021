@@ -19,9 +19,7 @@ public class StairCase {
             bres.add("");
             return bres;
         } else if(n < 0){
-            ArrayList<String> bres = new ArrayList<>();
-            bres.add("");
-            return bres;
+            return new ArrayList<>();
         }
 
         ArrayList<String> rres1 = getStairPaths(n-1);
