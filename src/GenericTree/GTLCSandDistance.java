@@ -44,15 +44,56 @@ public class GTLCSandDistance {
 
     }
 
-    public static int lca(Node one , Node two){
-        int lca = 0;
-        return lca;
+    public static int lca(Node one , Node two, int d1, int d2){
+       ArrayList<Integer> path1 = nodeToRootPath(one, d1);
+       ArrayList<Integer> path2 = nodeToRootPath(two, d2);
+
+       int i = path1.size() - 1;
+       int j = path2.size() -1;
+
+       while(i >=0 &&  j>=0 && path1.get(i) == path2.get(j)){
+           i--;
+           j--;
+       }
+
+       i++;
+       j++;
+
+       return path1.get(i);
     }
 
 
-    public static int distance(Node one , Node two){
-        int distance = 0;
-        return distance;
+    public static int distance(Node one , Node two , int d1, int d2){
+        ArrayList<Integer> path1 = nodeToRootPath(one, d1);
+        ArrayList<Integer> path2 = nodeToRootPath(two, d2);
+
+        int i = path1.size() - 1;
+        int j = path2.size() -1;
+
+        while(i >=0 &&  j>=0 && path1.get(i) == path2.get(j)){
+            i--;
+            j--;
+        }
+
+        return path1.get(i+1);
+    }
+
+    public static ArrayList<Integer> nodeToRootPath(Node node, int data){
+
+        if(node.data == data){
+            ArrayList<Integer> path = new ArrayList<>();
+            path.add(node.data);
+            return path;
+        }
+
+        for(Node child : node.gt){
+            ArrayList<Integer> path = nodeToRootPath(child, data);
+            if(path.size() > 0){
+                path.add(node.data);
+                return path;
+            }
+        }
+        return new ArrayList<>();
     }
 
 }
