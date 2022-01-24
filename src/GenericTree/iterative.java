@@ -1,12 +1,9 @@
 package GenericTree;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Stack;
+import java.io.*;
+import java.util.*;
 
-public class maximumsubtreesum {
-
+public class iterative {
     private static class Node {
         int data;
         ArrayList<Node> children = new ArrayList<>();
@@ -24,24 +21,6 @@ public class maximumsubtreesum {
             display(child);
         }
     }
-
-    static int maxsum = Integer.MIN_VALUE;
-    static Node maxsumNode ;
-
-    public static int getMaxsum(Node node){
-        int sum = 0;
-       for(Node child : node.children){
-           sum += getMaxsum(child);
-       }
-
-       if(sum > maxsum){
-           maxsumNode = node;
-           maxsum = sum;
-       }
-
-       return sum;
-    }
-
 
     public static Node construct(int[] arr) {
         Node root = null;
@@ -67,6 +46,44 @@ public class maximumsubtreesum {
         return root;
     }
 
+    static class Pair{
+        int state = -1;
+        Node node;
+    }
+    public static void IterativePreandPostOrder(Node node) {
+        // write your code here
+        Stack<Pair> stack = new Stack<>();
+        Pair rootp = new Pair();
+        rootp.state = -1;
+        rootp.node = node;
+        stack.push(rootp);
+
+        String Preorder = "";
+        String Postorder = "";
+
+        while(stack.size() > 0){
+            Pair peekp = stack.peek();
+
+            if(peekp.state == -1){
+                Preorder += peekp.node.data;
+                rootp.state++;
+            } else if(peekp.state >= 0 && peekp.state < node.children.size()-1){
+                Pair childp = new Pair();
+                childp.state = -1;
+                childp.node = peekp.node.children.get(peekp.state);
+                stack.push(childp);
+            } else if( peekp.state == peekp.node.children.size()){
+                Postorder += peekp.node.data;
+                peekp.state++;
+            } else{
+                stack.pop();
+            }
+        }
+
+        System.out.println(Preorder + " ");
+        System.out.println(Postorder + " ");
+    }
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
@@ -77,9 +94,7 @@ public class maximumsubtreesum {
         }
 
         Node root = construct(arr);
-        // write your code here
-        System.out.println(getMaxsum(root));
-
-
+        IterativePreandPostOrder(root);
     }
+
 }
